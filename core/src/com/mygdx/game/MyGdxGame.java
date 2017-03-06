@@ -40,7 +40,8 @@ import com.badlogic.gdx.physics.bullet.dynamics.btSequentialImpulseConstraintSol
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ArrayMap;
 import com.badlogic.gdx.utils.Disposable;
-
+import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class MyGdxGame extends ApplicationAdapter {
 
@@ -50,6 +51,8 @@ public class MyGdxGame extends ApplicationAdapter {
     final static short GROUND_FLAG = 1 << 8;
     final static short OBJECT_FLAG = 1 << 9;
     final static short ALL_FLAG = -1;
+
+    Viewport viewport;
 
     class MyContactListener extends ContactListener {
         @Override
@@ -127,11 +130,13 @@ public class MyGdxGame extends ApplicationAdapter {
 
         modelBatch = new ModelBatch();
         environment = new Environment();
-        environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.4f, 0.4f, 0.4f, 1f));
+        environment.set(new ColorAttribute(ColorAttribute.AmbientLight, 0.1f, 0.1f, 0.1f, 1f));
         environment.add(new DirectionalLight().set(0.8f, 0.8f, 0.8f, -1f, -0.8f, -0.2f));
 
-        cam = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        cam.position.set(3f, 7f, 10f);
+
+
+        cam = new PerspectiveCamera(50, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        cam.position.set(14f, 18f, 21f);
         cam.lookAt(0, 4f, 0);
         cam.near = 1f;
         cam.far = 300f;
@@ -212,7 +217,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         camController.update();
 
-        Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 1.f);
+        Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
         modelBatch.begin(cam);
